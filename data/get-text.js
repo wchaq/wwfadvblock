@@ -21,6 +21,22 @@ self.port.on("removeID", function onShow(storage) {
 	var i;
 	listItemView.innerHTML = "";
 	for(i = 0; i < storage.length;i++){
-		listItemView.innerHTML += "<li onclick='removeID()'>" + storage[i] + "</li>";
+		listItemView.innerHTML += "<li>" + storage[i] + '<input type="button" value="Remove" id="remove-'+i+'" /></li>';
+		var el = document.getElementById("remove-"+i);
+		el.addEventListener("click", function() {removeID(i)} , false);
 	}
 });
+
+// Remove Function
+function removeID(id) {
+	
+}
+
+// Function to change the content of t2
+function advFunc() {
+  self.port.emit("add-adv",document.getElementById("text-input").value);
+}
+
+// add event listener to t
+var el = document.getElementById("btnAdv");
+el.addEventListener("click", advFunc, false);
