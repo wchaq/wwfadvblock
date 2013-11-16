@@ -13,16 +13,23 @@ self.port.on("show", function onShow(storage) {
 	var i;
 	listItemView.innerHTML = "";
 	for(i = 0; i < storage.length;i++){
-		listItemView.innerHTML += "<li>" + storage[i] + '<input type="button" value="Remove" id="remove-'+i+'" /></li>';
+		listItemView.innerHTML += "<li>" + storage[i] + '<input type="hidden" id="hidden-'+i+'" value='+i+' /><input type="button" value="Remove" id="remove-'+i+'" /></li>';
 	}
 	
 	for(i = 0; i < storage.length;i++){
-		var el = document.getElementById("remove-"+i);
-		console.log(el);
-		el.addEventListener("click", function() {removeID(i)} , false);
+		addEventToRemove(i);
 	}
 	
 });
+
+function addEventToRemove(idx) {
+	var el = document.getElementById("remove-"+idx);
+	el.addEventListener("click", function() {removeID(idx);} , false);
+}
+
+function removeByHiddenValue(hidden) {
+	console.log("test"+hidden.value);
+}
 
 // Remove Function
 function removeID(id) {
