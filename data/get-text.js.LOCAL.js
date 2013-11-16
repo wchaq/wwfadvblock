@@ -29,12 +29,3 @@ self.port.on("text-storage", function (storage) {
 	text = text + storage[i];
 	textArea.value = text;  
 });
-
-// Function to change the content of t2
-function advFunc() {
-  self.port.emit("add-adv",document.getElementById("text-input").value);
-}
-
-// add event listener to t
-var el = document.getElementById("btnAdv");
-el.addEventListener("click", advFunc, false);
