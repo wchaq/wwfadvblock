@@ -27,13 +27,10 @@ function addEventToRemove(idx) {
 	el.addEventListener("click", function() {removeID(idx);} , false);
 }
 
-function removeByHiddenValue(hidden) {
-	console.log("test"+hidden.value);
-}
-
 // Remove Function
 function removeID(id) {
-	console.log("test"+id);
+	console.log("ajon : "+id);
+	self.port.emit("remove-adv",id);
 }
 
 // Function to change the content of t2
