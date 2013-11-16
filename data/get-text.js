@@ -2,7 +2,7 @@
 // message to main.js.
 // The message payload is the contents of the edit box.
 var textArea = document.getElementById("edit-box");
- 
+var listItemView = document.getElementById("list_filter");
 // Listen for the "show" event being sent from the
 // main add-on code. It means that the panel's about
 // to be shown.
@@ -10,25 +10,24 @@ var textArea = document.getElementById("edit-box");
 // Set the focus to the text area so the user can
 // just start typing.
 self.port.on("show", function onShow(storage) {
-  var text = "";
 	var i;
-	for(i = 0; i < storage.length-1;i++){
-		text = text + storage[i] + " - ";
+	listItemView.innerHTML = "";
+	for(i = 0; i < storage.length;i++){
+		listItemView.innerHTML += "<li>" + storage[i] + '<input type="button" value="Remove" id="remove-'+i+'" /></li>';
 	}
-	text = text + storage[i];
-	textArea.value = text;  
-  textArea.focus();
+	
+	for(i = 0; i < storage.length;i++){
+		var el = document.getElementById("remove-"+i);
+		console.log(el);
+		el.addEventListener("click", function() {removeID(i)} , false);
+	}
+	
 });
 
-self.port.on("text-storage", function (storage) {
-	var text = "";
-	var i;
-	for(i = 0; i < storage.length-1;i++){
-		text = text + storage[i] + " - ";
-	}
-	text = text + storage[i];
-	textArea.value = text;  
-});
+// Remove Function
+function removeID(id) {
+	console.log("test"+id);
+}
 
 // Function to change the content of t2
 function advFunc() {
