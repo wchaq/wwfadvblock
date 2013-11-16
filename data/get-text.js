@@ -13,23 +13,20 @@ self.port.on("show", function onShow(storage) {
 	var i;
 	listItemView.innerHTML = "";
 	for(i = 0; i < storage.length;i++){
-		listItemView.innerHTML += "<li onclick='removeID()'>" + storage[i] + "</li>";
-	}
-});
-
-self.port.on("removeID", function onShow(storage) {
-	var i;
-	listItemView.innerHTML = "";
-	for(i = 0; i < storage.length;i++){
 		listItemView.innerHTML += "<li>" + storage[i] + '<input type="button" value="Remove" id="remove-'+i+'" /></li>';
+	}
+	
+	for(i = 0; i < storage.length;i++){
 		var el = document.getElementById("remove-"+i);
+		console.log(el);
 		el.addEventListener("click", function() {removeID(i)} , false);
 	}
+	
 });
 
 // Remove Function
 function removeID(id) {
-	
+	console.log("test"+id);
 }
 
 // Function to change the content of t2
