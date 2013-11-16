@@ -2,14 +2,6 @@
 // message to main.js.
 // The message payload is the contents of the edit box.
 var textArea = document.getElementById("edit-box");
-textArea.addEventListener('keyup', function onkeyup(event) {
-  if (event.keyCode == 13) {
-    // Remove the newline.
-    text = textArea.value.replace(/(\r\n|\n|\r)/gm,"");
-    self.port.emit("text-entered", text);
-    textArea.value = '';
-  }
-}, false);
  
 // Listen for the "show" event being sent from the
 // main add-on code. It means that the panel's about
@@ -18,11 +10,22 @@ textArea.addEventListener('keyup', function onkeyup(event) {
 // Set the focus to the text area so the user can
 // just start typing.
 self.port.on("show", function onShow(storage) {
-  textArea.value = storage;
+  var text = "";
+	var i;
+	for(i = 0; i < storage.length-1;i++){
+		text = text + storage[i] + " - ";
+	}
+	text = text + storage[i];
+	textArea.value = text;  
   textArea.focus();
 });
 
-self.port.on("text-storage", function (valueStorage) {
-	textArea.value = valueStorage; 
-	console.log(ss.storage.myString); 
+self.port.on("text-storage", function (storage) {
+	var text = "";
+	var i;
+	for(i = 0; i < storage.length-1;i++){
+		text = text + storage[i] + " - ";
+	}
+	text = text + storage[i];
+	textArea.value = text;  
 });
