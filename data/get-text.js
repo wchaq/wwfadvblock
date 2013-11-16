@@ -18,15 +18,16 @@ self.port.on("show", function onShow(storage) {
 	
 	for(i = 0; i < storage.length;i++){
 		var el = document.getElementById("remove-"+i);
-		console.log(el);
-		el.addEventListener("click", function() {removeID(i)} , false);
+		var j = i;
+		el.addEventListener("click", function() {removeID(j)} , false);
 	}
 	
 });
 
 // Remove Function
 function removeID(id) {
-	console.log("test"+id);
+	console.log("ajon : "+id);
+	self.port.emit("remove-adv",id);
 }
 
 // Function to change the content of t2
