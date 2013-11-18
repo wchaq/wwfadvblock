@@ -33,7 +33,6 @@ function addEventToRemove(idx) {
 
 // Remove Function
 function removeID(id) {
-	console.log("ajon : "+id);
 	self.port.emit("remove-adv",id);
 }
 
